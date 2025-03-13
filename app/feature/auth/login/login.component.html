@@ -1,0 +1,50 @@
+<div class="login">
+  <div class="row">
+    <div class="col-lg-6">
+      <img class="login-img" src="assets/images/login-img3.png" alt="login" />
+    </div>
+    <div class="col-lg-5">
+      <div class="login-container">
+        <div>
+          <img style="height: 90px" src="/assets/images/govt.png" alt="" />
+        </div>
+        <h1 class="mt-4">Department Login</h1>
+        <p class="login-subtext mb-5">
+          For the purpose of industry regulation, your details are required.
+        </p>
+
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label login-label"
+              >Email Id<span class="required">*</span></label
+            >
+            <input
+              placeholder="Enter your Email Id"
+              type="email"
+              class="form-control login-input"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label login-label"
+              >Password<span class="required">*</span></label
+            >
+            <input
+              placeholder="Enter your password"
+              type="password"
+              class="form-control login-input"
+              id="exampleInputPassword1"
+            />
+          </div>
+          <a
+            (click)="routeNavigation()"
+            type="submit"
+            class="btn btn-danger login-btn"
+            >LOGIN</a
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

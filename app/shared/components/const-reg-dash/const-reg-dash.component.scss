@@ -1,0 +1,57 @@
+.section {
+    /* background-color: rgba(221, 58, 40, 1);
+    background-image: url(/images/vector.png);
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat; */
+    min-height: 100vh;
+   padding-left: 296px;
+    padding-top: 10px;
+    padding-right: 44px;
+    /*  background-color: #fafafa; */
+  }
+
+  .card[_ngcontent-ng-c3227909655]{
+  max-width: 20em;
+  flex-direction: row;
+  background-color: white;
+  border: 0;
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.18);
+  max-height: 70px;
+}
+
+.card-body{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.card-number{
+  background: rgba(239, 216, 46, 1);;
+  color: white;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+.card-number h5{
+  padding: 0px;
+    margin: 0px;
+}
+
+.card-body h6{
+  margin: 0px;
+}
+
+.card-image{
+  justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.card-image img{
+  width: 50%;
+}

@@ -1,0 +1,141 @@
+<section class="bg-tomato form shadow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <h5 class="form-heading border-bottom border-white">
+          Representation Registration
+        </h5>
+        <div class="card mt-3 rounded-0">
+          <div class="row justify-content-center">
+            <div class="col-md-8 p-4">
+              <form
+                [formGroup]="registrationForm"
+                (ngSubmit)="onSubmit()"
+                class="row"
+              >
+                <div class="mb-3 col-md-6">
+                  <label class="form-label"
+                    >Full Name<span style="color: red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    formControlName="fullName"
+                    class="form-control"
+                  />
+                  <div
+                    *ngIf="
+                      formControls['fullName'].invalid &&
+                      formControls['fullName'].touched
+                    "
+                    class="text-danger"
+                  >
+                    Full Name is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label"
+                    >Aadhar Number<span style="color: red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    formControlName="aadharNumber"
+                    class="form-control"
+                    maxlength="12"
+                    pattern="[0-9]*"
+                    (input)="onAadharInput($event)"
+                  />
+                  <div
+                    *ngIf="
+                      formControls['aadharNumber'].invalid &&
+                      formControls['aadharNumber'].touched
+                    "
+                    class="text-danger"
+                  >
+                    Aadhar Number is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label"
+                    >Mobile Number<span style="color: red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    formControlName="mobileNumber"
+                    class="form-control"
+                    maxlength="10"
+                    pattern="[0-9]*"
+                    (input)="onMobileInput($event)"
+                  />
+                  <div
+                    *ngIf="
+                      formControls['mobileNumber'].invalid &&
+                      formControls['mobileNumber'].touched
+                    "
+                    class="text-danger"
+                  >
+                    Mobile Number is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label"
+                    >Address<span style="color: red">*</span></label
+                  >
+                  <input
+                    type="text"
+                    formControlName="address"
+                    class="form-control"
+                  />
+                  <div
+                    *ngIf="
+                      formControls['address'].invalid &&
+                      formControls['address'].touched
+                    "
+                    class="text-danger"
+                  >
+                    Address is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-12">
+                  <label class="form-label"
+                    >Brief Of Representation<span style="color: red"
+                      >*</span
+                    ></label
+                  >
+                  <textarea
+                    formControlName="representation"
+                    class="form-control"
+                    placeholder="Type your message here ......"
+                    rows="4"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      formControls['representation'].invalid &&
+                      formControls['representation'].touched
+                    "
+                    class="text-danger"
+                  >
+                    Brief Of Representation is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-4">
+                  <input
+                    id="fileInput"
+                    class="form-control"
+                    type="file"
+                    (change)="onFileChange($event)"
+                  />
+                  <div *ngIf="fileError" class="text-danger">
+                    {{ fileError }}
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

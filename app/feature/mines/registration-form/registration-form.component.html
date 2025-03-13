@@ -1,0 +1,122 @@
+<section class="bg-tomato form shadow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <h5 class="form-heading border-bottom border-white">
+          Representation Registration
+        </h5>
+        <div class="card mt-3 rounded-0">
+          <div class="row justify-content-center">
+            <div class="col-md-8 p-4">
+              <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="row">
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Full Name<span style="color: red">*</span></label>
+                  <input type="text" formControlName="fullName" class="form-control" />
+                  <div *ngIf="
+                      formControls['fullName'].invalid &&
+                      formControls['fullName'].touched
+                    " class="text-danger">
+                    Full Name is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Aadhar Number<span style="color: red">*</span></label>
+                  <input type="text" formControlName="aadharNumber" class="form-control" maxlength="12" pattern="[0-9]*"
+                    (input)="onAadharInput($event)" />
+                  <div *ngIf="
+                      formControls['aadharNumber'].invalid &&
+                      formControls['aadharNumber'].touched
+                    " class="text-danger">
+                    Aadhar Number is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Mobile Number<span style="color: red">*</span></label>
+                  <input type="text" formControlName="mobileNumber" class="form-control" maxlength="10" pattern="[0-9]*"
+                    (input)="onMobileInput($event)" />
+                  <div *ngIf="
+                      formControls['mobileNumber'].invalid &&
+                      formControls['mobileNumber'].touched
+                    " class="text-danger">
+                    Mobile Number is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Address<span style="color: red">*</span></label>
+                  <input type="text" formControlName="address" class="form-control" />
+                  <div *ngIf="
+                      formControls['address'].invalid &&
+                      formControls['address'].touched
+                    " class="text-danger">
+                    Address is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-12">
+                  <label class="form-label">Brief Of Representation<span style="color: red">*</span></label>
+                  <textarea formControlName="representation" class="form-control"
+                    placeholder="Type your message here..." rows="4"></textarea>
+                  <div *ngIf="
+                      formControls['representation'].invalid &&
+                      formControls['representation'].touched
+                    " class="text-danger">
+                    Brief Of Representation is required.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-4">
+                  <label class="form-label">Upload<span style="color:red">*</span></label>
+                  <input class="form-control" type="file" id="fileInput" (change)="onFileChange($event)" />
+                  <div *ngIf="fileError" class="text-danger">
+                    {{ fileError }}
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Email<span style="color:red">*</span></label>
+                  <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" />
+                  <!-- <button type="button" class="btn btn-danger" (click)="SendOtp()" [disabled]="isOtpVerified">Send
+                    OTP</button> -->
+                  <button type="button" class="btn" [ngClass]="isOtpVerified ? 'btn-success' : 'btn-danger'"
+                    (click)="isOtpVerified ? null : SendOtp()" [disabled]="isOtpVerified">
+                    {{ isOtpVerified ? 'Verified' : 'Send OTP' }}
+                  </button>
+                  <div *ngIf="formControls['email'].invalid && formControls['email'].touched" class="text-danger">
+                    Valid email is required.
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">Enter OTP</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="otpForm">
+          <div class="otp-inputs d-flex justify-content-center">
+            <input *ngFor="let control of ['otp1', 'otp2', 'otp3', 'otp4', 'otp5', 'otp6']" type="text" maxlength="1"
+              class="otp-box mx-1" [formControlName]="control" (input)="onOtpInput($event)" />
+          </div>
+          <div *ngIf="otpError" class="text-danger">
+            {{otpError}}
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="verifyOtp()">Verify OTP</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,522 @@
+<section class="bg-tomato custom_table shadow">
+  <div class="container">
+    <!-- card count started here -->
+    <!-- <div class="main-dashboard">
+      <div class="container-fluid">
+        <div class="approved vessels mb-4 mt-4">
+         
+        </div>
+      </div>
+    </div> -->
+    <div class="col-md-12">
+      <div class="row pt-4">
+        <div class="col-md-3">
+          <div
+            _ngcontent-ng-c3227909655=""
+            title="Received Vessel Registrations"
+            class="card"
+          >
+            <div class="col-md-3 card-number">
+              <h5>100</h5>
+            </div>
+            <div class="col-md-6 card-body">
+              <h6>Drinking Water</h6>
+            </div>
+            <div
+              class="col-md-3 card-image"
+              (click)="
+                constDashList('overAll', 'overAll', 'Drinking water issue')
+              "
+            >
+              <img src="assets/images/pending-image.png" alt="" srcset="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div
+            _ngcontent-ng-c3227909655=""
+            title="Forward Vessel Registrations"
+            class="card"
+          >
+            <div class="col-md-3 card-number">
+              <h5>10</h5>
+            </div>
+            <div
+              class="col-md-6 card-body"
+              (click)="
+                constDashList('overAll', 'overAll', 'sanitization issue')
+              "
+            >
+              <h6>Sanitization</h6>
+            </div>
+            <div class="col-md-3 card-image">
+              <img src="assets/images/Pending.png" alt="" srcset="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div
+            _ngcontent-ng-c3227909655=""
+            title="Nodal Approved Vessel Registrations"
+            class="card"
+          >
+            <div class="col-md-3 card-number">
+              <h5>20</h5>
+            </div>
+            <div
+              class="col-md-6 card-body"
+              (click)="constDashList('overAll', 'overAll', 'Roads')"
+            >
+              <h6>Roads</h6>
+            </div>
+            <div class="col-md-3 card-image">
+              <img
+                src="assets/images/approved-image.png"
+                alt=""
+                srcset=""
+                class="card-image"
+                style="width: 50%"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div
+            _ngcontent-ng-c3227909655=""
+            title="Returned from nodal"
+            class="card"
+          >
+            <div class="col-md-3 card-number">
+              <h5>2</h5>
+            </div>
+            <div class="col-md-6 card-body">
+              <h6>Street Lights</h6>
+            </div>
+            <div class="col-md-3 card-image">
+              <img src="assets/images/Pending.png" alt="" srcset="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mt-4">
+          <div
+            _ngcontent-ng-c3227909655=""
+            title="Returned from nodal"
+            class="card"
+          >
+            <div class="col-md-3 card-number">
+              <h5>1</h5>
+            </div>
+            <div class="col-md-6 card-body">
+              <h6>Drainage</h6>
+            </div>
+            <div class="col-md-3 card-image">
+              <img src="assets/images/Pending.png" alt="" srcset="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- card count ended here -->
+    <div class="col-md-12 border-bottom border-white pt-5">
+      <div class="row">
+        <div class="col-md-4 d-flex align-items-center">
+          <h5 class="form-heading pb-0">Constituency Dashboard</h5>
+        </div>
+        <div
+          class="col-md-8 d-flex justify-content-end align-items-center mb-2"
+        >
+          <div>
+            <input
+              type="date"
+              (change)="handleChange($event)"
+              class="form-control date"
+            />
+          </div>
+          &nbsp;
+          <div>
+            <select
+              id="status"
+              class="form-select"
+              aria-label="Default select example"
+              (change)="handleChange($event)"
+            >
+              <option value="" [disabled]="true" selected>--Select--</option>
+              <option value="Processing">Processing</option>
+              <option value="Completed">Completed</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+          &nbsp;
+          <div>
+            <select
+              id="issue"
+              class="form-select"
+              aria-label="Default select example"
+              (change)="handleChange($event)"
+            >
+              <option value="" [disabled]="true" selected>--Select--</option>
+              <option>Drinking water issue</option>
+              <option>sanitization issue</option>
+              <option>Roads</option>
+              <!-- <option>Completed</option>
+              <option>Rejected</option> -->
+            </select>
+          </div>
+          &nbsp;
+          <div>
+            <button class="btn btn-warning" (click)="downloadExcel()">
+              Download Excel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Table Start  -->
+        <div class="card mt-3 rounded-0">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Constituency ID</th>
+                    <!-- <th>Application No</th> -->
+                    <th>Full Name</th>
+                    <th>Aadhar Number</th>
+                    <th>Mobile Number</th>
+                    <th>Mandal</th>
+                    <th>Urban/Rural</th>
+                    <th>Village</th>
+                    <th>Issue</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of paginatedData">
+                    <td>{{ item.constituencyId }}</td>
+                    <!-- <td>{{ item.applicationNo }}</td> -->
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.aadharNumber }}</td>
+                    <td>{{ item.mobileNumber }}</td>
+                    <td>{{ item.mandal }}</td>
+                    <td>{{ item.division }}</td>
+                    <td>{{ item.village }}</td>
+                    <td>{{ item.issue }}</td>
+                    <td>
+                      <div class="status {{ item.status.toLowerCase() }}">
+                        {{ item.status }}
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex">
+                        <div class="status completed">
+                          <a
+                            (click)="constGetDataById(item.constituencyId)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editconstModal"
+                          >
+                            <i class="fa fa-pencil"></i>
+                          </a>
+                        </div>
+                        &nbsp;
+                        <div class="status processing">
+                          <a
+                            (click)="constGetDataById(item.constituencyId)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#constModal"
+                          >
+                            <i class="fa fa-eye"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <ng-container *ngIf="paginatedData.length > 0">
+                <div
+                  *ngIf="totalItems > itemsPerPage"
+                  class="d-flex justify-content-end align-items-center pe-2 ps-2 pb-2"
+                >
+                  <button
+                    (click)="prevPage()"
+                    [disabled]="!canGoPrev()"
+                    class="btn btn-primary me-2"
+                  >
+                    Prev
+                  </button>
+
+                  <ul class="pagination m-0 me-2">
+                    <li
+                      class="page-item"
+                      *ngFor="
+                        let page of [].constructor(getTotalPages());
+                        let i = index
+                      "
+                    >
+                      <a
+                        class="page-link"
+                        href="javascript:void(0);"
+                        (click)="setPage(i + 1)"
+                        [class.active]="i + 1 === currentPage"
+                        >{{ i + 1 }}</a
+                      >
+                    </li>
+                  </ul>
+
+                  <button
+                    (click)="nextPage()"
+                    [disabled]="!canGoNext()"
+                    class="btn btn-primary"
+                  >
+                    Next
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <!-- Table End  -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<div
+  class="modal fade"
+  id="constModal"
+  tabindex="-1"
+  aria-labelledby="constModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="constModalLabel">Constituency Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-bordered">
+          <tbody>
+            <tr>
+              <th>Constituency ID</th>
+              <td>{{ constDataById?.constituencyId }}</td>
+            </tr>
+            <tr>
+              <th>Name</th>
+              <td>{{ constDataById?.constituency?.name }}</td>
+            </tr>
+            <tr>
+              <th>Mobile Number</th>
+              <td>{{ constDataById?.constituency?.mobileNumber }}</td>
+            </tr>
+            <tr>
+              <th>Mandal</th>
+              <td>{{ constDataById?.constituency?.mandal }}</td>
+            </tr>
+            <tr>
+              <th>Village</th>
+              <td>{{ constDataById?.constituency?.village }}</td>
+            </tr>
+
+            <tr>
+              <th>Aadhar Number</th>
+              <td>{{ constDataById?.constituency?.aadharNumber }}</td>
+            </tr>
+            <tr>
+              <th>Meeting Agenda</th>
+              <td>
+                {{ constDataById?.constituency?.meetingAgenda }}
+              </td>
+            </tr>
+            <tr *ngIf="constDataById?.documentDto">
+              <th>Document</th>
+              <td>
+                {{ constDataById?.documentDto?.documentName }}
+                <i
+                  class="fa fa-download"
+                  aria-hidden="true"
+                  (click)="
+                    downLoadPdfFile(
+                      constDataById?.documentDto?.fileContentType,
+                      constDataById?.documentDto?.imgBase64,
+                      constDataById?.documentDto?.documentName
+                    )
+                  "
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="editconstModal"
+  tabindex="-1"
+  aria-labelledby="editconstModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editconstModalLabel">
+          Constituency Details
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-bordered">
+          <tbody>
+            <tr>
+              <th>Constituency ID</th>
+              <td>{{ constDataById?.constituencyId }}</td>
+            </tr>
+            <tr>
+              <th>Name</th>
+              <td>{{ constDataById?.constituency?.name }}</td>
+            </tr>
+            <tr>
+              <th>Mobile Number</th>
+              <td>{{ constDataById?.constituency?.mobileNumber }}</td>
+            </tr>
+            <tr>
+              <th>Mandal</th>
+              <td>{{ constDataById?.constituency?.mandal }}</td>
+            </tr>
+            <tr>
+              <th>Village</th>
+              <td>{{ constDataById?.constituency?.village }}</td>
+            </tr>
+
+            <tr>
+              <th>Aadhar Number</th>
+              <td>{{ constDataById?.constituency?.aadharNumber }}</td>
+            </tr>
+            <tr>
+              <th>Meeting Agenda</th>
+              <td>
+                {{ constDataById?.constituency?.meetingAgenda }}
+              </td>
+            </tr>
+            <tr *ngIf="constDataById?.documentDto">
+              <th>Document</th>
+              <td>
+                {{ constDataById?.documentDto?.documentName }}
+                <i
+                  class="fa fa-download"
+                  aria-hidden="true"
+                  (click)="
+                    downLoadPdfFile(
+                      constDataById?.documentDto?.fileContentType,
+                      constDataById?.documentDto?.imgBase64,
+                      constDataById?.documentDto?.documentName
+                    )
+                  "
+                ></i>
+              </td>
+            </tr>
+
+            <ng-container [formGroup]="mainForm">
+              <tr>
+                <th>Status</th>
+                <td>
+                  <select class="form-select" formControlName="status">
+                    <option [disabled]="true" selected value="">
+                      --select--
+                    </option>
+                    <option>Completed</option>
+                    <option>Rejected</option>
+                  </select>
+                  <!-- <div
+                    *ngIf="
+                      constForm.controls['status'].invalid &&
+                      constForm.controls['status'].touched
+                    "
+                    class="text-danger"
+                  >
+                    Status is required.
+                  </div> -->
+                </td>
+              </tr>
+
+              <tr>
+                <th>Email</th>
+                <td>
+                  <input
+                    formControlName="newEmail"
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter email"
+                  />
+                </td>
+              </tr>
+            </ng-container>
+
+            <tr>
+              <td></td>
+              <td>
+                <button class="float-end btn btn-primary" (click)="addEmail()">
+                  Add
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="emailArrayFa.length > 0" class="mt-4">
+          <h5>Added Emails:</h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let email of emailArrayFa.controls; let i = index">
+                <td>{{ email.value.newEmail }}</td>
+                <td>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    (click)="removeEmail(i)"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="saveChanges()">
+          Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
